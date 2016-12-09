@@ -5,6 +5,7 @@ name: "Myoung-jin, Ko"
 description: "software engineer Myoung-jin, Ko(AKA. dotkebi)"
 baseurl: ""
 url: "http://dotkebi.github.io"
+alias: "dotkebi"
 github_username: "dotkebi"
 linkedin_username: "명진-고-607272b7"
 
@@ -12,3 +13,6 @@ linkedin_username: "명진-고-607272b7"
 markdown: kramdown
 permalink: pretty
 theme: minima
+
+gems:
+  - jekyll-sitemap
