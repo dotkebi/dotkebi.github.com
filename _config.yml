@@ -4,8 +4,8 @@ email: dotkebi@gmail.com
 description: "software engineer Myoung-jin, Ko(AKA. dotkebi)"
 baseurl: ""
 url: "http://dotkebi.github.io"
-#twitter_username: jekyllrb
 github_username:  dotkebi
+linkedin_usernam: 명진-고-607272b7
 
 # Build settings
 markdown: kramdown
