@@ -5,7 +5,7 @@ description: "software engineer Myoung-jin, Ko(AKA. dotkebi)"
 baseurl: ""
 url: "http://dotkebi.github.io"
 github_username:  dotkebi
-linkedin_usernam: 명진-고-607272b7
+linkedin_username: 명진-고-607272b7
 
 # Build settings
 markdown: kramdown
