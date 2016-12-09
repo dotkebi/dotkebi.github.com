@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Welcome to Home!"
-date:   2016-08-31 22:13:19
+date:   2016-08-31 00:00:00
 categories: home
 ---
 
