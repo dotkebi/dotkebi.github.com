@@ -1,18 +1,17 @@
 # Site settings
-title: d.kebi.log
+title: dKebi's Blog
 email: dotkebi@gmail.com
-name: "Myoung-jin, Ko"
-description: "software engineer Myoung-jin, Ko(AKA. dotkebi)"
-baseurl: ""
-url: "http://dotkebi.github.io"
-alias: "dotkebi"
-github_username: "dotkebi"
+description: > # this means to ignore newlines until "baseurl:"
+  The blog of Myoungjin Ko.
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://dotkebi.github.io" # the base hostname & protocol for your site
+name:  "Myoungjin Ko"
+alias:  "dotkebi"
+github_username:  "dotkebi"
 linkedin_username: "명진-고-607272b7"
 
 # Build settings
 markdown: kramdown
-permalink: pretty
-theme: minima
 
 gems:
   - jekyll-sitemap
