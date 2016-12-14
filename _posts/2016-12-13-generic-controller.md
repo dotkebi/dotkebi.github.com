@@ -69,18 +69,14 @@ public abstract class AbstractController<T, K extends Serializable> {
     public String modify(
             @PathVariable K id
             , Model model
-    ) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+    ) {
         model.addAttribute("data", service.fetch(id));
         model.addAttribute("title", getTitle() + " 수정");
         return getPageHeader() + "Modify";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String add(
-            Model model
-    ) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
-        Type type = ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-        model.addAttribute("data", ((Class) type).newInstance());
+    public String add(Model model) {
         model.addAttribute("title", getTitle() + " 추가");
         return getPageHeader() + "New";
     }
@@ -274,8 +270,8 @@ import java.util.List;
 /**
  * @author by dotkebi@gmail.com
  */
+@SessionAttributes("data")
 @Controller
-@RequestMapping(value = "")
 public class TestController extends AbstractController<Test, Long> {
 
     @Autowired
@@ -296,6 +292,11 @@ public class TestController extends AbstractController<Test, Long> {
     @Override
     protected String getTitle() {
         return "test";
+    }
+    
+    @ModelAttribute("data")
+    public Test create()  {
+        return new Test();
     }
 }
 ```
