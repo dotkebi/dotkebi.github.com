@@ -89,19 +89,10 @@ public abstract class AbstractController<T, K extends Serializable> {
             , Model model
     ) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("errors", bindingResult.getAllErrors());
             String modifier = "/add";
-            if (!t.getId() > 0) {
-                modifier = "/modify/" + t.getId();
-            }
             return "redirect:" + getAPIUrl() + modifier;
         }
-        if (t.getId() > 0) {
-            service.save(t);
-        }
-        else {
-            service.update(t);
-        }
+        service.save(t);
         sessionStatus.setComplete();
         return "redirect:" + getAPIUrl();
     }
@@ -145,8 +136,6 @@ public interface AbstractService<T, K extends Serializable> {
 
     void save(T t);
 
-    void update(T t);
-
     void delete(K id);
 
 }
@@ -170,45 +159,40 @@ import java.io.Serializable;
  */
 public abstract class AbstractServiceImpl<T, K extends Serializable> implements AbstractService<T, K> {
 
-    protected JpaRepository<T, K> dao;
+    protected JpaRepository<T, K> repository;
 
-    public AbstractServiceImpl(JpaRepository<T, K> dao) {
-        this.dao = dao;
+    public AbstractServiceImpl(JpaRepository<T, K> repository) {
+        this.repository =repositorydao;
     }
 
     @Override
     public Page<T> fetchAll(Pageable pageRequest) {
-        return dao.findAll(pageRequest);
+        return repository.findAll(pageRequest);
     }
 
     @Override
     public T fetch(K id) {
-        return dao.findOne(id);
+        return repository.findOne(id);
     }
 
     @Override
     public void save(T t) {
-        dao.save(t);
-    }
-
-    @Override
-    public void update(T t) {
-        dao.save(t);
+        repository.save(t);
     }
 
     @Override
     public void delete(K id) {
-        dao.delete(id);
+        repository.delete(id);
     }
 
 }
 
 ```
 
-### 1.4. dao
+### 1.4. repository
 
 ``` java
-package io.github.dotkebi.dao;
+package io.github.dotkebi.repository;
 
 import io.github.dotkebi.model.Test;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -216,7 +200,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * @author by dotkebi@gmail.com
  */
-public interface TestDao extends JpaRepository<Test, Long> {
+public interface TestRepository extends JpaRepository<Test, Long> {
 }
 ```
 
@@ -293,7 +277,7 @@ public class TestController extends AbstractController<Test, Long> {
     protected String getTitle() {
         return "test";
     }
-    
+
     @ModelAttribute("data")
     public Test create()  {
         return new Test();
@@ -318,9 +302,9 @@ import org.springframework.stereotype.Service;
 public class TestServiceImpl extends AbstractServiceImpl<Test, Long> {
 
     @Autowired
-    public TestServiceImpl(TestDao dao) {
-        super(dao);
+    public TestServiceImpl(TestRepository repository) {
+        super(repository);
     }
-    
+
 }
 ```
